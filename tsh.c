@@ -187,7 +187,7 @@ void eval(char *cmdline){
     if(!builtin_cmd(argv)){
 	/*child process*/	
 	if((pid = fork()) == 0){
-	    printf("child running new program called %s \n", argv[0]);
+	   //printf("\nchild running new program called %s \n", argv[0]);
 	    if(execve(argv[0], argv, environ) < 0){
 		printf("%s: Command not found.\n", argv[0]);
 		exit(0);
@@ -270,13 +270,13 @@ int parseline(const char *cmdline, char **argv)
  */
 int builtin_cmd(char **argv)
 {
-    printf(argv[0]);
-    if(!strcmp(argv[0], "quit\n"))
+    //printf("\nchecking if %s is a built in program\n",argv[0]);
+    if(!strcmp(argv[0], "quit"))
 	//printf("you called exit");
 	exit(0);
     if(!strcmp(argv[0], "&\n"))
 	return 1;
-    printf("not a built in program \n");
+    //printf("\n it is not a built in program \n");
     return 0;     /* not a builtin command */
 }
 
